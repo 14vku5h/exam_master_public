@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:theme="@style/Theme.ExamMaster.NoActionBar"
+    tools:context=".SplashActivity">
+
+    <ImageView
+        android:id="@+id/logoImg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_below="@id/logoImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/applable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressBar"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/applable"
+        android:gravity="center_horizontal"
+        android:text="LKV CODE STUDIO"
+        android:textSize="15sp" />
+
+</RelativeLayout>

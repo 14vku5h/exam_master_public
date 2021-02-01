@@ -1,0 +1,101 @@
+{
+  "project_info": {
+    "project_number": "757207508465",
+    "firebase_url": "https://exammaster-82e2e.firebaseio.com",
+    "project_id": "exammaster-82e2e",
+    "storage_bucket": "exammaster-82e2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757207508465:android:536bba2c214e23c1c81050",
+        "android_client_info": {
+          "package_name": "com.lkvcodestudio.exam.master"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757207508465-f1f3q45bh5f21qv0tilfhcbg5hp1omkd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lkvcodestudio.exam.master",
+            "certificate_hash": "44608c462d46cc9983c57eb99db74a403e8fd024"
+          }
+        },
+        {
+          "client_id": "757207508465-s824rmsqa0mobtd6afhpksdbslg16o3q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lkvcodestudio.exam.master",
+            "certificate_hash": "d0feb3e930d3d7b246816f82fe45ca7526fb4c0d"
+          }
+        },
+        {
+          "client_id": "757207508465-eqamosbuuhvcn650kmd1mhn7mmvm4vqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA92I6eb-zDkXzEHCBdqzjM97vYWRN5wss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757207508465-eqamosbuuhvcn650kmd1mhn7mmvm4vqi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757207508465:android:ca2b33db9dfa1bb5c81050",
+        "android_client_info": {
+          "package_name": "com.lkvcodestudio.exammaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757207508465-f3hc5pm9h1akbserr7l736vj89vbjlkr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lkvcodestudio.exammaster",
+            "certificate_hash": "d0feb3e930d3d7b246816f82fe45ca7526fb4c0d"
+          }
+        },
+        {
+          "client_id": "757207508465-phta7ibamkouko4rognach8cjqv4v6bt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lkvcodestudio.exammaster",
+            "certificate_hash": "44608c462d46cc9983c57eb99db74a403e8fd024"
+          }
+        },
+        {
+          "client_id": "757207508465-eqamosbuuhvcn650kmd1mhn7mmvm4vqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA92I6eb-zDkXzEHCBdqzjM97vYWRN5wss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757207508465-eqamosbuuhvcn650kmd1mhn7mmvm4vqi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

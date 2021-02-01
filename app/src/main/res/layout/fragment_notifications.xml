@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.notifications.NotficationFragment">
+
+    <RelativeLayout
+        android:id="@+id/hh"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="?attr/colorPrimary"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="My Exams"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:id="@+id/addExamBtn"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="6dp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:scaleType="center"
+            app:materialIcon="plus"
+            app:materialIconColor="@color/white"
+            app:materialIconSize="24dp" />
+
+    </RelativeLayout>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/examsTabLayout"
+        android:layout_below="@+id/hh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/upcomingTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upcoming Exams" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/pastTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Past Exams" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/examsViewPager"
+        android:layout_below="@+id/examsTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    </androidx.viewpager.widget.ViewPager>
+    <RelativeLayout
+        android:id="@+id/examLoader"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/examsTabLayout"
+        android:background="@drawable/round_back_white"
+        android:elevation="1dp"
+        android:visibility="visible">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/purple_500" />
+
+    </RelativeLayout>
+
+
+    <!--
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/examListRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp" />
+        </RelativeLayout>
+    -->
+</RelativeLayout>

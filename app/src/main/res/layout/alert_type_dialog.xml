@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:background="@color/purple_500"
+        android:gravity="center_vertical">
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:id="@+id/closeAl"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            app:materialIconSize="24dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_marginLeft="6dp"
+            android:background="@android:color/transparent"
+            android:scaleType="center"
+            app:materialIcon="arrow_left"
+            app:materialIconColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_weight="2"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:text="Select Alert Type"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/alertTypeRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
