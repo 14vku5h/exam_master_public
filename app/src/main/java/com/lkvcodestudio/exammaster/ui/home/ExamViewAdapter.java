@@ -24,31 +24,41 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lkvcodestudio.exammaster.R;
 import com.lkvcodestudio.exammaster.models.Exam;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class ExamViewAdapter extends RecyclerView.Adapter<ExamViewAdapter.ExamViewHolder> {
     List<Exam> examList;
     Fragment fragment;
     FirebaseFirestore firestore;
+    String userId;
 
     public ExamViewAdapter(Fragment fragment, List<Exam> examList) {
-        this.fragment=fragment;
+        this.fragment = fragment;
         this.examList = examList;
-        this.firestore= FirebaseFirestore.getInstance();
+        this.firestore = FirebaseFirestore.getInstance();
+    }
+
+    public ExamViewAdapter(List<Exam> examList, String userId) {
+        this.userId = userId;
+        this.examList = examList;
+        this.firestore = FirebaseFirestore.getInstance();
     }
 
     @NonNull
     @Override
     public ExamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_exam,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_exam, parent, false);
 
-       ExamViewHolder holder = new ExamViewHolder(itemView);
+        ExamViewHolder holder = new ExamViewHolder(itemView);
         return holder;
     }
 
@@ -56,42 +66,62 @@ public class ExamViewAdapter extends RecyclerView.Adapter<ExamViewAdapter.ExamVi
     public void onBindViewHolder(@NonNull ExamViewHolder holder, int position) {
         Exam exam = examList.get(position);
         holder.examName.setText(exam.getName());
-      /*  holder.examName.setOnClickListener(new View.OnClickListener() {
+        TextView exn = holder.examName;
+        exn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), SubjectActivity.class);
-                intent.putExtra("exam", (Serializable) exam);
-                v.getContext().startActivity(intent);
-            }
-        });*/
-      /*  holder.options.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popup = new PopupMenu(v.getContext(), holder.options);
-                popup.inflate(R.menu.exam_optionmenu);
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-
-                            case R.id.editExam:
-                                //right your action here
-                                Intent editIntent = new Intent(v.getContext(), AddExamActivity.class);
-                                editIntent.putExtra("exam",exam);
-                                fragment.startActivityForResult(editIntent,1111);
-                                return true;
-                            case R.id.deleteExam:
-                                deleteExam(exam,v.getContext(),position);
-                                return true;
+                int green = v.getContext().getResources().getColor(R.color.green);
+                int white = v.getContext().getResources().getColor(R.color.white);
+                if (exam.isSelected()) {
+                    v.setBackgroundColor(white);
+                    holder.parentV.setBackgroundColor(white);
+                    holder.selectedIcon.setVisibility(View.GONE);
+                    exam.setSelected(false);
+                    String t = v.getTag().toString().trim();
+                    Task<Void> writeResult = firestore.collection("/users/" + userId + "/exams")
+                            .document(t).delete();
+                    writeResult.addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.e("Delete Result", "Deleted successfully");
+                            Toast.makeText(holder.itemView.getContext(), "Remove Successfully", Toast.LENGTH_SHORT).show();
                         }
-                        return false;
-                    }
-                });
-                popup.show();
+                    });
+                    writeResult.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("TAG ERRor", e.getMessage());
+                            Toast.makeText(holder.itemView.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
+                } else {
+                    Log.e("ExamViewAdapter", "unchecked");
+                    v.setBackgroundColor(green);
+                    holder.parentV.setBackgroundColor(green);
+                    holder.selectedIcon.setVisibility(View.VISIBLE);
+                    exam.setSelected(true);
+                    Log.e("ExamViewAdapter", "checked");
+                    firestore.collection("/users/" + userId + "/exams")
+                            .add(exam)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    v.setTag(documentReference.getId());
+                                    Toast.makeText(holder.itemView.getContext(), "Exam selected successfully: ", Toast.LENGTH_SHORT).show();
+                                    Log.e("SelectSubAd", "DocumentSnapshot  added with ID: " + documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.e("SelectSubAd", "Error adding document", e);
+                                    Toast.makeText(holder.itemView.getContext(), "Failed to add subject !", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
             }
         });
-*/
     }
 
 
@@ -102,12 +132,13 @@ public class ExamViewAdapter extends RecyclerView.Adapter<ExamViewAdapter.ExamVi
 
     public class ExamViewHolder extends RecyclerView.ViewHolder {
         public TextView examName;
-       // public View options;
+        public View selectedIcon, parentV;
 
         public ExamViewHolder(@NonNull View itemView) {
             super(itemView);
-            examName=itemView.findViewById(R.id.examName);
-            //options=itemView.findViewById(R.id.options);
+            examName = itemView.findViewById(R.id.examName);
+            selectedIcon = itemView.findViewById(R.id.selectedIcon);
+            parentV = itemView.findViewById(R.id.parentV);
         }
     }
 }

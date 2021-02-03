@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="1dp"
-        android:background="@color/light"
+        android:background="@color/natural_bg"
         android:layout_centerInParent="true">
         <RelativeLayout
 
